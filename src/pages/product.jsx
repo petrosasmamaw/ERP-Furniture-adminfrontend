@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts, createProduct, deleteProduct } from '../slice/productsSlice';
 // framer-motion removed
@@ -14,6 +14,7 @@ export default function Product() {
     rating: 0,
   });
   const [images, setImages] = useState([]);
+  const productsRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchProducts());
