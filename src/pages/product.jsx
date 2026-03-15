@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { fetchProducts, createProduct, deleteProduct } from '../slice/productsSlice';
 // framer-motion removed
 
 export default function Product() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { products, status } = useSelector((state) => state.products);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
@@ -197,6 +199,13 @@ export default function Product() {
                     onClick={() => handleDelete(product._id)}
                   >
                     Delete
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    style={{ marginLeft: 8 }}
+                    onClick={() => navigate('/recommendation', { state: { product } })}
+                  >
+                    Analyze
                   </button>
                 </div>
               </div>
